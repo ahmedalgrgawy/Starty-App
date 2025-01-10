@@ -1,4 +1,5 @@
 import { auth, signOut, signIn } from "@/auth";
+import Image from "next/image";
 import Link from "next/link"
 
 export const Navbar = async () => {
@@ -9,15 +10,13 @@ export const Navbar = async () => {
         <div className="px-5 py-3 bg-white shadow-sm font-work-sans">
             <nav className="flex justify-between items-center">
                 <Link href="/">
-                    <h1 className="text-2xl font-bold text-purple-600">
-                        Starty-App
-                    </h1>
+                    <Image src="/logo.png" alt="logo" width={144} height={30} />
                 </Link>
 
                 <div className="flex items-center gap-5">
                     {session && session?.user ? (
                         <>
-                            <Link href="/startup/create" className="text-sm font-bold text-purple-600">
+                            <Link href="/startup/create" className="text-sm font-bold text-primary">
                                 <span>Create Startup</span>
                             </Link>
 
