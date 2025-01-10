@@ -36,7 +36,7 @@ export const Navbar = async () => {
                                 </button>
                             </form>
 
-                            <Link href={`/user/${session?.id}`}>
+                            <Link href={`/user/${session?.user?.id}`}>
                                 <span>{session?.user?.name}</span>
                             </Link>
 
@@ -48,7 +48,7 @@ export const Navbar = async () => {
 
                                 await signIn("github")
                             }}>
-                                <button type="submit" className="text-sm font-bold text-purple-600">
+                                <button type="submit" className="text-sm font-bold text-primary">
                                     Login
                                 </button>
                             </form>
