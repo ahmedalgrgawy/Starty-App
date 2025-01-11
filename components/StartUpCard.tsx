@@ -3,15 +3,19 @@ import { EyeIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./ui/button"
+import { Author, Startup } from "@/sanity/types"
+
+export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
+
 
 const StartUpCard = ({ post }: {
-    post: StartupCardType
+    post: StartupTypeCard
 }) => {
 
-    const { _id, _createdAt, views, desc, image, category, title, author } = post
+    const { _id, _createdAt, views, description, image, category, title, author } = post
 
     return (
-        <li className="startup-card group">
+        <li key={_id} className="startup-card group">
             <div className="flex-between">
                 <p className="startup_card_date">
                     {formatDateString(_createdAt)}
@@ -43,17 +47,17 @@ const StartUpCard = ({ post }: {
                 </div>
 
                 <Link href={`/user/${author?._id}`} className="startup-card_desc line-clamp-2">
-                    <Image src="https://placehold.co/600x400" width={48} height={48} className="rounded-full" alt={author?.name} />
+                    <Image src="https://placehold.co/600x400" width={48} height={48} className="rounded-full" alt="placeholder" priority={true} />
                 </Link>
 
             </div>
 
             <Link href={`/startup/${_id}`} >
                 <p className="startup-card_desc">
-                    {desc}
+                    {description}
                 </p>
 
-                <Image src={image} alt="placeholder" width={600} height={400} className="startup-card_img" />
+                <Image src={image || "https://placehold.co/600x400"} alt="placeholder" width={600} height={400} className="startup-card_img" />
 
             </Link>
 
