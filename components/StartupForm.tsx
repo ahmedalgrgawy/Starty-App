@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validations";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { createStartup } from "@/lib/actions";
 
