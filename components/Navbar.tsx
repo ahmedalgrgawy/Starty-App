@@ -1,6 +1,8 @@
 import { auth, signOut, signIn } from "@/auth";
+import { BadgePlus, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export const Navbar = async () => {
 
@@ -10,14 +12,15 @@ export const Navbar = async () => {
         <div className="px-5 py-3 bg-white shadow-sm font-work-sans">
             <nav className="flex justify-between items-center">
                 <Link href="/">
-                    <Image src="/logo.png" alt="logo" width={144} height={30} />
+                    <h1 className="text-[32px] font-bold text-primary">Starty</h1>
                 </Link>
 
                 <div className="flex items-center gap-5">
                     {session && session?.user ? (
                         <>
                             <Link href="/startup/create" className="text-sm font-bold text-primary">
-                                <span>Create Startup</span>
+                                <span className="max-sm:hidden text-[18px] font-bold">Create Startup</span>
+                                <BadgePlus className="size-6 sm:hidden" />
                             </Link>
 
                             <form action={
@@ -32,12 +35,16 @@ export const Navbar = async () => {
                                 }
                             }>
                                 <button type="submit"  >
-                                    Logout
+                                    <span className="max-sm:hidden text-[18px] font-bold">Logout</span>
+                                    <LogOut className="size-6 sm:hidden" />
                                 </button>
                             </form>
 
                             <Link href={`/user/${session?.user?.id}`}>
-                                <span>{session?.user?.name}</span>
+                                <Avatar className="size-12">
+                                    <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || ""} />
+                                    <AvatarFallback>AV</AvatarFallback>
+                                </Avatar>
                             </Link>
 
                         </>

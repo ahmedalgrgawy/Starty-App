@@ -47,7 +47,7 @@ const StartUpCard = ({ post }: {
                 </div>
 
                 <Link href={`/user/${author?._id}`} className="startup-card_desc line-clamp-2">
-                    <Image src="https://placehold.co/600x400" width={48} height={48} className="rounded-full" alt="placeholder" priority={true} />
+                    <Image src={author?.image || "https://placehold.co/600x400"} width={48} height={48} className="rounded-full" alt="placeholder" priority={true} />
                 </Link>
 
             </div>

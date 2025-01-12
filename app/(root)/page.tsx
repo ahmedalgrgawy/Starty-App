@@ -2,7 +2,8 @@ import StartUpCard, { StartupTypeCard } from "@/components/StartUpCard";
 import SearchForm from "../../components/SearchForm";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { auth } from "@/auth";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 export default async function Home({ searchParams }: {
     searchParams: Promise<{ query: string }>;
@@ -13,10 +14,6 @@ export default async function Home({ searchParams }: {
     const params = { search: query || null }
 
     const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params })
-
-    const session = await auth()
-
-    console.log(session?.id);
 
 
     return (
@@ -61,3 +58,13 @@ export default async function Home({ searchParams }: {
         </>
     );
 }
+
+export const StartupCardSkeleton = () => (
+    <>
+        {[0, 1, 2, 3, 4].map((index: number) => (
+            <li key={cn("skeleton", index)}>
+                <Skeleton className="startup-card_skeleton" />
+            </li>
+        ))}
+    </>
+);
