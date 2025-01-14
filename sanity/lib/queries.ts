@@ -5,7 +5,7 @@ export const STARTUPS_QUERY = defineQuery(`
     _id,
     title,
     slug,
-    _createAt,
+    _createdAt,
     author -> {
     _id,name,image,bio
 },
@@ -63,40 +63,40 @@ export const AUTHOR_BY_ID_QUERY = defineQuery(`
 
 export const STARTUPS_BY_AUTHOR_QUERY =
     defineQuery(`*[_type == "startup" && author._ref == $id] | order(_createdAt desc) {
-      _id, 
-      title, 
-      slug,
-      _createdAt,
-      author -> {
-        _id, name, image, bio
-      }, 
-      views,
-      description,
-      category,
-      image,
+    _id, 
+    title, 
+    slug,
+    _createdAt,
+    author -> {
+    _id, name, image, bio
+    }, 
+    views,
+    description,
+    category,
+    image,
     }`);
 
 export const PLAYLIST_BY_SLUG_QUERY =
     defineQuery(`*[_type == "playlist" && slug.current == $slug][0]{
-      _id,
-      title,
-      slug,
-      select[]->{
+    _id,
+    title,
+    slug,
+    select[]->{
         _id,
         _createdAt,
         title,
         slug,
         author->{
-          _id,
-          name,
-          slug,
-          image,
-          bio
+        _id,
+        name,
+        slug,
+        image,
+        bio
         },
         views,
         description,
         category,
         image,
         pitch
-      }
+    }
     }`);
