@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: {
                 </h1>
 
                 <p className="sub-heading !max-w-3xl ">
-                    Submit Ideas, Get Funding, Grow Your Business
+                    Submit Ideas & Get Funding, Grow Your Business
                 </p>
 
                 <SearchForm query={query} />
